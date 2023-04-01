@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="20dp"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textViewNombreArchivo"
+            style="@style/estiloTexto"
+            android:text="Nombre del archivo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.106"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.049" />
+
+        <EditText
+            android:id="@+id/nombreArchivo"
+            style="@style/estiloEditText"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textViewNombreArchivo"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNombreArchivo" />
+
+        <TextView
+            android:id="@+id/textViewContenido"
+            style="@style/estiloTexto"
+            android:text="Conteido del archivo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.109"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nombreArchivo"
+            app:layout_constraintVertical_bias="0.037" />
+
+        <EditText
+            android:id="@+id/contenidoArchivo"
+            style="@style/estiloEditText"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textViewContenido"
+            app:layout_constraintTop_toBottomOf="@+id/textViewContenido" />
+
+
+        <TextView
+            android:id="@+id/cambiarFormato"
+            style="@style/estiloTexto"
+            android:textStyle="bold"
+            android:text="Cambia el formato"
+            app:layout_constraintBottom_toTopOf="@+id/btnGuardarArchivoTexto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.668" />
+
+        <Button
+            android:id="@+id/btnTextoNormal"
+            style="@style/estiloBotones"
+            android:text="Normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.051"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cambiarFormato"
+            app:layout_constraintVertical_bias="0.162" />
+
+        <Button
+            android:id="@+id/btnTextoCursiva"
+            style="@style/estiloBotones"
+            android:text="Cursiva"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.211"
+            app:layout_constraintStart_toEndOf="@+id/btnTextoNormal"
+            app:layout_constraintTop_toBottomOf="@+id/cambiarFormato"
+            app:layout_constraintVertical_bias="0.162" />
+
+        <Button
+            android:id="@+id/btnTextoNegrita"
+            style="@style/estiloBotones"
+            android:text="Negrita"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.728"
+            app:layout_constraintStart_toEndOf="@+id/btnTextoCursiva"
+            app:layout_constraintTop_toBottomOf="@+id/cambiarFormato"
+            app:layout_constraintVertical_bias="0.162" />
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/estiloTexto"
+            android:text="Cambiar Tamaño"
+            app:layout_constraintBottom_toTopOf="@+id/btnGuardarArchivoTexto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.058"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnTextoNormal" />
+
+        <TextView
+            android:id="@+id/masGrande"
+            style="@style/estiloTextoConFondo"
+            android:text="+"
+            app:layout_constraintBottom_toTopOf="@+id/btnGuardarArchivoTexto"
+            app:layout_constraintEnd_toStartOf="@+id/textViewTextSize"
+            app:layout_constraintHorizontal_bias="0.386"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/btnTextoNormal"
+            app:layout_constraintVertical_bias="0.517" />
+
+        <TextView
+            android:id="@+id/textViewTextSize"
+            style="@style/estiloTexto"
+            android:text="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnGuardarArchivoTexto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/btnTextoNormal" />
+
+        <TextView
+            android:id="@+id/masPeque"
+            style="@style/estiloTextoConFondo"
+            android:text="-"
+            app:layout_constraintBottom_toTopOf="@+id/btnGuardarArchivoTexto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.644"
+            app:layout_constraintStart_toEndOf="@+id/textViewTextSize"
+            app:layout_constraintTop_toBottomOf="@+id/btnTextoNormal"
+            app:layout_constraintVertical_bias="0.517" />
+
+        <Button
+            android:id="@+id/btnGuardarArchivoTexto"
+            style="@style/estiloBotones"
+            android:text="Guardar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.975" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
