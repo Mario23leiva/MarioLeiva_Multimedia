@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.marioleiva_multimedia.R
 import com.example.marioleiva_multimedia.databinding.FragmentVerBinding
-import com.example.marioleiva_multimedia.ui.editar.CrearArchivoTextoFragment
-import com.example.marioleiva_multimedia.ui.editar.VerArchivoTextoFragment
+import com.example.marioleiva_multimedia.VerArchivoTextoFragment
+import com.example.marioleiva_multimedia.VerImagenFragment
 import java.io.File
 
 class VerFragment : Fragment() {
@@ -48,8 +48,26 @@ class VerFragment : Fragment() {
                 .commit()
         }
 
+        binding.verFoto.setOnClickListener {
+
+            val archivos = obtenerImagenes()
+            val bundle = Bundle()
+            bundle.putSerializable("imagenes", archivos.toTypedArray())
+
+            val contenedor = requireActivity().findViewById<View>(R.id.nav_host_fragment_activity_main)
+            val fragmentManager = requireFragmentManager()
+            val fragmentDestino = VerImagenFragment()
+            fragmentDestino.arguments = bundle
+            fragmentManager.beginTransaction()
+                .replace(contenedor.id, fragmentDestino)
+                .addToBackStack(null)
+                .commit()
+        }
+
         return root
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -61,4 +79,9 @@ class VerFragment : Fragment() {
         return folder.listFiles()?.filter { it.extension == "txt" }?.toMutableList() ?: mutableListOf()
     }
 
+
+    private fun obtenerImagenes(): MutableList<File> {
+        val folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+        return folder.listFiles()?.filter { it.extension == "jpg" }?.toMutableList() ?: mutableListOf()
+    }
 }

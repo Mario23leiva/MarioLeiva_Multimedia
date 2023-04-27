@@ -23,6 +23,7 @@ import android.Manifest
 import android.app.Activity
 import android.app.Activity.RESULT_OK
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -97,25 +98,13 @@ class CrearFragment : Fragment() {
 
     private fun guardarFoto(fileName: String) {
         try {
-            // Crear el archivo en la carpeta "Pictures" de la aplicación
-            val storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-            val imageFile = File(storageDir, "$fileName.jpg")
+            val storageDir = requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+            val imageFile = File.createTempFile(fileName, ".jpg", storageDir)
 
-            // Obtener la URI del archivo usando el FileProvider
-            val photoURI = FileProvider.getUriForFile(requireContext(), "${requireContext().packageName}.fileprovider", imageFile)
+            val outputStream = FileOutputStream(imageFile)
+            currentBitmap?.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+            outputStream.close()
 
-            // Guardar la imagen en el archivo
-            val stream: OutputStream = FileOutputStream(imageFile)
-            currentBitmap?.compress(Bitmap.CompressFormat.JPEG, 100, stream)
-            stream.flush()
-            stream.close()
-
-            // Agregar la URI del archivo a la galería de imágenes
-            val mediaScanIntent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
-            mediaScanIntent.data = photoURI
-            requireContext().sendBroadcast(mediaScanIntent)
-
-            // Mostrar mensaje de éxito
             Toast.makeText(requireContext(), "Foto guardada correctamente", Toast.LENGTH_SHORT).show()
         } catch (ex: Exception) {
             // Mostrar mensaje de error
@@ -123,8 +112,6 @@ class CrearFragment : Fragment() {
             ex.printStackTrace()
         }
     }
-
-
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

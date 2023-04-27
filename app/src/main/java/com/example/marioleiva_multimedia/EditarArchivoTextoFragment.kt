@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.marioleiva_multimedia.R
 import com.example.marioleiva_multimedia.databinding.EditarArchivoTextoFragmentBinding
 import com.example.marioleiva_multimedia.ui.editar.CrearArchivoTextoFragment
-import com.example.marioleiva_multimedia.ui.editar.VerArchivoTextoFragment
 import java.io.*
 
 class EditarArchivoTextoFragment : Fragment() {

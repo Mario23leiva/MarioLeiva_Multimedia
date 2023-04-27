@@ -48,6 +48,10 @@ class EditarFragment : Fragment() {
                 .commit()
         }
 
+        binding.editarFoto.setOnClickListener(){
+
+        }
+
         return root
     }
 
