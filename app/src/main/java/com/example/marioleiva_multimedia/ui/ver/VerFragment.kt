@@ -53,6 +53,41 @@ class VerFragment : Fragment() {
             val archivos = obtenerImagenes()
             val bundle = Bundle()
             bundle.putSerializable("imagenes", archivos.toTypedArray())
+            bundle.putSerializable("tipo", "imagen")
+
+            val contenedor = requireActivity().findViewById<View>(R.id.nav_host_fragment_activity_main)
+            val fragmentManager = requireFragmentManager()
+            val fragmentDestino = VerImagenFragment()
+            fragmentDestino.arguments = bundle
+            fragmentManager.beginTransaction()
+                .replace(contenedor.id, fragmentDestino)
+                .addToBackStack(null)
+                .commit()
+        }
+
+        binding.verVideos.setOnClickListener {
+
+            val archivos = obtenerVideos()
+            val bundle = Bundle()
+            bundle.putSerializable("imagenes", archivos.toTypedArray())
+            bundle.putSerializable("tipo", "video")
+
+            val contenedor = requireActivity().findViewById<View>(R.id.nav_host_fragment_activity_main)
+            val fragmentManager = requireFragmentManager()
+            val fragmentDestino = VerImagenFragment()
+            fragmentDestino.arguments = bundle
+            fragmentManager.beginTransaction()
+                .replace(contenedor.id, fragmentDestino)
+                .addToBackStack(null)
+                .commit()
+        }
+
+        binding.ecucharAudios.setOnClickListener {
+
+            val archivos = obtenerAudios()
+            val bundle = Bundle()
+            bundle.putSerializable("audio", archivos.toTypedArray())
+            bundle.putSerializable("tipo", "audio")
 
             val contenedor = requireActivity().findViewById<View>(R.id.nav_host_fragment_activity_main)
             val fragmentManager = requireFragmentManager()
@@ -83,5 +118,15 @@ class VerFragment : Fragment() {
     private fun obtenerImagenes(): MutableList<File> {
         val folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
         return folder.listFiles()?.filter { it.extension == "jpg" }?.toMutableList() ?: mutableListOf()
+    }
+
+    private fun obtenerVideos(): MutableList<File> {
+        val folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES)
+        return folder.listFiles()?.filter { it.extension == "mp4" }?.toMutableList() ?: mutableListOf()
+    }
+
+    private fun obtenerAudios(): MutableList<File> {
+        val folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC)
+        return folder.listFiles()?.filter { it.extension == "mp3" }?.toMutableList() ?: mutableListOf()
     }
 }

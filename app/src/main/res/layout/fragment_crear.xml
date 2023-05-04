@@ -52,7 +52,7 @@
         app:layout_constraintVertical_bias="0.125" />
 
     <Button
-        android:id="@+id/verVideos"
+        android:id="@+id/grabarVideos"
         style="@style/estiloBotones"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
